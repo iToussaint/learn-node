@@ -18,9 +18,28 @@ import fs from "fs";
 
 const server = http
   .createServer((request, response) => {
+    response.statusCode = 200;
     response.setHeader("Content-Type", "text/html");
 
-    const readFile = fs.readFile("./public/index.html", (error, data) => {
+    let path = "./public/";
+    console.log(request.url);
+
+    switch (request.url) {
+      case "/":
+        path += "home.html";
+        break;
+      case "/about":
+        path += "about.html";
+        break;
+      case "/contact":
+        path += "contact.html";
+        break;
+      default:
+        path += "404.html";
+        break;
+    }
+
+    const readFile = fs.readFile(path, (error, data) => {
       if (error) {
         console.log(error);
       } else {
