@@ -14,17 +14,32 @@ Challenge:
 */
 
 import http from "node:http";
+import fs from "fs";
 
 const server = http
   .createServer((request, response) => {
-    response.statusCode = 301;
     response.setHeader("Content-Type", "text/html");
-    response.write("<html><h1>The server is working</h1><html>");
-    response.end();
+
+    const readFile = fs.readFile("./public/index.html", (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        response.write(data);
+      }
+      response.end();
+    });
   })
-  .listen(8000, () => {
-    console.log("Server running");
-  });
+  .listen(8000);
 
+// const server = http
+//   .createServer((request, response) => {
+//     response.statusCode = 301;
+//     response.setHeader("Content-Type", "text/html");
+//     response.write("<html><h1>The server is working</h1><html>");
+//     response.end();
+//   })
+//   .listen(8000, () => {
+//     console.log("Server running");
+//   });
 
-  console.log(__dirname)
+//   console.log()
