@@ -18,7 +18,6 @@ import fs from "fs";
 
 const server = http
   .createServer((request, response) => {
-    response.statusCode = 200;
     response.setHeader("Content-Type", "text/html");
 
     let path = "./public/";
@@ -26,16 +25,22 @@ const server = http
 
     switch (request.url) {
       case "/":
+        response.statusCode = 200;
         path += "home.html";
         break;
       case "/about":
+        response.statusCode = 200;
         path += "about.html";
         break;
       case "/contact":
+        response.statusCode = 200;
         path += "contact.html";
         break;
       default:
-        path += "404.html";
+        response.statusCode = 301;
+        response.setHeader("Location", "/");
+        response.end();
+        // path += "404.html";
         break;
     }
 
