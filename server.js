@@ -13,47 +13,47 @@ Challenge:
 
 */
 
-import http from "node:http";
-import fs from "fs";
+// import http from "node:http";
+// import fs from "fs";
 
-const server = http
-  .createServer((request, response) => {
-    response.setHeader("Content-Type", "text/html");
+// const server = http
+//   .createServer((request, response) => {
+//     response.setHeader("Content-Type", "text/html");
 
-    let path = "./public/";
-    console.log(request.url);
+//     let path = "./public/";
+//     console.log(request.url);
 
-    switch (request.url) {
-      case "/":
-        response.statusCode = 200;
-        path += "home.html";
-        break;
-      case "/about":
-        response.statusCode = 200;
-        path += "about.html";
-        break;
-      case "/contact":
-        response.statusCode = 200;
-        path += "contact.html";
-        break;
-      default:
-        response.statusCode = 301;
-        response.setHeader("Location", "/");
-        response.end();
-        // path += "404.html";
-        break;
-    }
+//     switch (request.url) {
+//       case "/":
+//         response.statusCode = 200;
+//         path += "home.html";
+//         break;
+//       case "/about":
+//         response.statusCode = 200;
+//         path += "about.html";
+//         break;
+//       case "/contact":
+//         response.statusCode = 200;
+//         path += "contact.html";
+//         break;
+//       default:
+//         response.statusCode = 301;
+//         response.setHeader("Location", "/");
+//         response.end();
+//         // path += "404.html";
+//         break;
+//     }
 
-    const readFile = fs.readFile(path, (error, data) => {
-      if (error) {
-        console.log(error);
-      } else {
-        response.write(data);
-      }
-      response.end();
-    });
-  })
-  .listen(8000);
+//     const readFile = fs.readFile(path, (error, data) => {
+//       if (error) {
+//         console.log(error);
+//       } else {
+//         response.write(data);
+//       }
+//       response.end();
+//     });
+//   })
+//   .listen(8000);
 
 // const server = http
 //   .createServer((request, response) => {
@@ -67,3 +67,13 @@ const server = http
 //   });
 
 //   console.log()
+
+const express = require("express");
+
+const app = express();
+
+app.listen(3000);
+
+app.get("/", (req, res) => {
+  res.send("<h1>Hello worldsss</h1>");
+});
