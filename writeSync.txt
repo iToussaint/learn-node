@@ -1,0 +1,1 @@
+Synchronously writting to a file and append instead of overriding and append instead of overriding and append instead of overriding and append instead of overriding
