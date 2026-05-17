@@ -1,19 +1,21 @@
-import fs from "fs";
+// import fs from "fs";
 
-const readStream = fs.createReadStream("./docs/file.txt", {
-  encoding: "utf-8",
-});
-const writeStream = fs.createWriteStream("./docs/file1.txt");
+// const readStream = fs.createReadStream("./docs/file.txt", {
+//   encoding: "utf-8",
+// });
+// const writeStream = fs.createWriteStream("./docs/file1.txt");
 
-readStream.on("data", (chunk) => {
-  console.log(chunk);
-  writeStream.write(chunk)
-});
+// readStream.on("data", (chunk) => {
+//   console.log(chunk);
+//   writeStream.write(chunk)
+// });
 
+// // piping
 
+// readStream.pipe(writeStream)
 
-// piping
+// // there is also duplex stream
 
-readStream.pipe(writeStream)
+const buffer = new Buffer("Toussaint");
 
-// there is also duplex stream
+console.log(buffer.toJSON());
