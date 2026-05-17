@@ -1,13 +1,14 @@
 const { error } = require("node:console");
 const fs = require("node:fs/promises");
 
-fs.readFile("./fs.txt", "utf-8").then((error, data) => {
-  if (error) {
+(async function readFile() {
+  try {
+    const content = await fs.readFile("./fs.txt", "utf-8");
+    console.log(content);
+  } catch (error) {
     console.log(error);
-  } else {
-    console.log(data);
   }
-});
+})();
 
 // const contentSync = fs.readFileSync("./fs.txt", "utf-8");
 
